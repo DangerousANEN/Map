@@ -16,7 +16,8 @@ class MapApp(QMainWindow):
 
     def getImage(self, ll: Tuple[float] = (37.530887, 55.703118), spn: Tuple[float] = (0.002, 0.002),
                  l: Literal["map", "sat", "skl"] = "map"):
-        map_request = f"http://static-maps.yandex.ru/1.x/?ll={','.join(ll)}&spn={','.join(spn)}&l={l}"
+        map_request = f"http://static-maps.yandex.ru/1.x/?ll={','.join(map(str, ll))}" + \
+                      f"&spn={','.join(map(str, spn))}&l={l}"
         response = requests.get(map_request, stream=True).raw
 
         if not response:
